@@ -5,8 +5,8 @@ class HashTable{
     }
     hash(key){
         let total = 0;
-        for(let i=0;i<key.length;i++){
-            total +=key.charCodeAt(i);
+        for(let i= 0;i<key.length;i++){
+            total +=key.charCodeAt(i)
         }
         return total % this.size;
     }
@@ -16,9 +16,9 @@ class HashTable{
         if(!bucket){
             this.table[index] = [[key,value]]
         }else{
-            const samekeyExist = bucket.find(item=>item[0]===key);
-            if(samekeyExist){
-                samekeyExist[1] = value;
+            let sameKeyItem = bucket.find(item=>item[0]==key);
+            if(sameKeyItem){
+                sameKeyItem[1] = value;
             }else{
                 bucket.push([key,value])
             }
@@ -26,14 +26,6 @@ class HashTable{
     }
     get(key){
         const index = this.hash(key);
-        const bucket = this.table[index];
-        if(bucket){
-            const samekeyExist =bucket.find(item=>item[0]===key);
-            if(samekeyExist){
-                return samekeyExist;
-            }
-        }
-        return undefined;
     }
     remove(key){
         const index = this.hash(key);
@@ -47,10 +39,10 @@ class HashTable{
         }
     }
 }
-const table = new HashTable(30);
-table.set('name','shaheer');
+const table = new HashTable(20);
+table.set('name','Shaheer');
 table.set('mane','zero');
-table.set('age',22);
-table.set('place','mukkam');
-table.remove('place')
+table.set('hame','hhhhhhh');
+table.set('Age','22');
+// table.remove('Name')
 table.display()
