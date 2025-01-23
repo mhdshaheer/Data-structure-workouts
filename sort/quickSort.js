@@ -1,4 +1,4 @@
-let arr = [-6,9,0,-3,5,4];
+let arr = [-6,9,0,-3,5,4,0];
 function quickSort(arr){
     if(arr.length<=1){
         return arr
