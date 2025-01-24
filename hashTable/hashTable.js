@@ -37,7 +37,11 @@ class HashTable{
     }
     remove(key){
         const index = this.hash(key);
-        this.table[index] = undefined;
+        // this.table[index] = undefined;
+        let bucket = this.table[index];
+        if(bucket){
+            this.table[index] = bucket.filter(item=>item[0]!==key);
+        }
     }
     display(){
         for(let i=0;i<this.table.length;i++){
@@ -52,5 +56,5 @@ table.set('name','shaheer');
 table.set('mane','zero');
 table.set('age',22);
 table.set('place','mukkam');
-table.remove('place')
+table.remove('mane')
 table.display()
