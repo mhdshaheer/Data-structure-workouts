@@ -1,5 +1,4 @@
 const nums = [12,55,33,-88,19];
-[12,33,55,-88,19]
 for(let i = 1; i<nums.length;i++){
     let key = nums[i];
     let j = i-1;

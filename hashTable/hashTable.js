@@ -37,7 +37,7 @@ class HashTable{
     }
     remove(key){
         const index = this.hash(key);
-        // this.table[index] = undefined;
+        // this.table[index] = undefined; 
         let bucket = this.table[index];
         if(bucket){
             this.table[index] = bucket.filter(item=>item[0]!==key);
