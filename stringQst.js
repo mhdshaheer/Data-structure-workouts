@@ -29,13 +29,18 @@
 // console.log(removeDuplicate(strArr))
 
 // Palindrome
-const str = 'racecar';
-function isPalindrome(str){
-    for(let i = 0;i<str.length;i++){
-        if(str[i]!==str[str.length-1-i] && i>(str.length-1-i)){
-            return false;
-        }
-    }
-    return true;
-}
-console.log(isPalindrome(str))
+// const str = 'racecar';
+// function isPalindrome(str){
+//     for(let i = 0;i<str.length;i++){
+//         if(str[i]!==str[str.length-1-i] && i>(str.length-1-i)){
+//             return false;
+//         }
+//     }
+//     return true;
+// }
+// console.log(isPalindrome(str))
+
+//remove element from the array;
+let arr = ['a','b','c','d','e']
+arr.splice(2,1);
+console.log(arr)
