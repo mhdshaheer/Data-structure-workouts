@@ -48,12 +48,41 @@ class BinarySearchTree{
             }
         }
     }
+    preOrder(root){
+        if(root){
+            console.log(root.value);
+            this.preOrder(root.left);
+            this.preOrder(root.right)
+        }
+    }
+    inOrder(root){
+        if(root){
+            this.inOrder(root.left);
+            console.log(root.value);
+            this.inOrder(root.right)
+        }
+    }
+    postOrder(root){
+        if(root){
+            this.postOrder(root.left);
+            this.postOrder(root.right)
+            console.log(root.value)
+        }
+    }
 }
 
 const bst = new BinarySearchTree();
 console.log('Tree is empty ?',bst.isEmpty())
 bst.insert(10);
-bst.insert(4);
+bst.insert(5);
 bst.insert(15);
+bst.insert(7);
+bst.insert(3);
 console.log(bst.search(bst.root,11))
 console.log(bst.search(bst.root,15))
+console.log('Preorder traversal :')
+bst.preOrder(bst.root)
+console.log('Inorder traversal :')
+bst.inOrder(bst.root)
+console.log('Postorder traversal :')
+bst.postOrder(bst.root)
