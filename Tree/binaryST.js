@@ -83,6 +83,47 @@ class BinarySearchTree{
             }
         }
     }
+    min(root){
+        if(!root.left){
+            return root.value;
+        }else{
+            return this.min(root.left)
+        }
+    }
+    max(root){
+        if(!root.right){
+            return root.value;
+        }else{
+            return this.max(root.right)
+        }
+    }
+    delete(value){
+        this.root = this.deleteNode(this.root,value);
+    }
+    deleteNode(root,value){
+        if(root==null){
+            return root;
+        }
+        if(value<root.value){
+            root.left = this.deleteNode(root.left,value)
+        }else if(value > root.value){
+            root.right = this.deleteNode(root.right,value)
+        }else{
+            //The node which have no child node
+            if(!root.left && !root.right){
+                return null;
+            }
+            if(!root.left){
+                return root.right;
+            }else if(!root.right){
+                return root.left
+            }
+            root.value = this.min(root.right);
+            root.right = this.deleteNode(root.right,root.value)
+        }
+        return root
+        
+    }
 }
 
 const bst = new BinarySearchTree();
@@ -94,11 +135,14 @@ bst.insert(7);
 bst.insert(3);
 console.log(bst.search(bst.root,11))
 console.log(bst.search(bst.root,15))
-console.log('Preorder traversal :')
-bst.preOrder(bst.root)
-console.log('Inorder traversal :')
-bst.inOrder(bst.root)
-console.log('Postorder traversal :')
-bst.postOrder(bst.root);
+// console.log('Preorder traversal :')
+// bst.preOrder(bst.root)
+// console.log('Inorder traversal :')
+// bst.inOrder(bst.root)
+// console.log('Postorder traversal :')
+// bst.postOrder(bst.root);
+bst.delete(15)
 console.log('Bfs traversal :')
 bst.levelOrder()
+console.log('Minimum value is:',bst.min(bst.root))
+console.log('Maximum value is:',bst.max(bst.root))
