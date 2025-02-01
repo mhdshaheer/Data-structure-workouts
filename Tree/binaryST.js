@@ -133,16 +133,16 @@ bst.insert(5);
 bst.insert(15);
 bst.insert(7);
 bst.insert(3);
-console.log(bst.search(bst.root,11))
-console.log(bst.search(bst.root,15))
+// console.log(bst.search(bst.root,11))
+// console.log(bst.search(bst.root,15))
 // console.log('Preorder traversal :')
 // bst.preOrder(bst.root)
 // console.log('Inorder traversal :')
 // bst.inOrder(bst.root)
 // console.log('Postorder traversal :')
 // bst.postOrder(bst.root);
-bst.delete(15)
-console.log('Bfs traversal :')
-bst.levelOrder()
-console.log('Minimum value is:',bst.min(bst.root))
-console.log('Maximum value is:',bst.max(bst.root))
+// bst.delete(15)
+// console.log('Bfs traversal :')
+// bst.levelOrder()
+// console.log('Minimum value is:',bst.min(bst.root))
+// console.log('Maximum value is:',bst.max(bst.root))

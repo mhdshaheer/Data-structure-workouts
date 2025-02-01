@@ -28,9 +28,7 @@ class Graph{
         if(!this.adjusantList[vertex]){
             return 
         }
-        console.log('hhhhhh:',this.adjusantList[vertex])
         for(let adjusantVertex of this.adjusantList[vertex]){
-            console.log('Value:',vertex,adjusantVertex)
             this.removeEdge(vertex,adjusantVertex);
         }
         delete this.adjusantList[vertex]
