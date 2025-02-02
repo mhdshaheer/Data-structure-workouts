@@ -124,6 +124,23 @@ class BinarySearchTree{
         return root
         
     }
+    findClosest(target){
+        let curr = this.root;
+        let closest = this.root.value;
+        while(curr){
+            if(Math.abs(target-curr.value)<Math.abs(target-closest)){
+                closest = curr.value;
+            }
+            if(target<curr.value){
+                curr = curr.left;
+            }else if(target > curr.value){
+                curr = curr.right;
+            }else{
+                return
+            }
+        }
+        return closest;
+    }
 }
 
 const bst = new BinarySearchTree();
@@ -146,3 +163,4 @@ bst.insert(3);
 // bst.levelOrder()
 // console.log('Minimum value is:',bst.min(bst.root))
 // console.log('Maximum value is:',bst.max(bst.root))
+console.log('Closest value of ',4,' is:',bst.findClosest(4))

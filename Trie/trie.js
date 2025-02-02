@@ -45,4 +45,4 @@ const trie = new Trie();
 trie.insert('cat');
 trie.insert('bat');
 console.log(trie.contains('cat'))
-console.log(trie.startWithPrefix('cass'))
+console.log(trie.startWithPrefix('h'))
