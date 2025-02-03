@@ -5,12 +5,12 @@ class Node{
         this.right = null;
     }
 }
-class Tree{
+class BinarySearchTree{
     constructor(){
-        this.root = null
+        this.root = null;
     }
     isEmpty(){
-        return this.root == null
+        return this.root===null
     }
     insert(value){
         const newNode = new Node(value);
@@ -21,98 +21,123 @@ class Tree{
         }
     }
     insertNode(root,newNode){
-        if(newNode.value<root.value){
-            if(root.left== null){
-                root.left = newNode;
+        if(root){
+            if(newNode.value<root.value){
+                if(root.left===null){
+                    root.left = newNode;
+                }else{
+                     this.insertNode(root.left,newNode)
+                }
             }else{
-                this.insertNode(root.left,newNode)
+                if(root.right===null){
+                    root.right = newNode;
+                }else{
+                     this.insertNode(root.right,newNode)
+                }
             }
-        }else{
-            if(root.right==null){
-                root.right = newNode;
-            }else{
-                this.insertNode(root.right,newNode)
-            }
-        }
-    }
-    search(root,value){
-        if(!root){
-            return false
-        }
-        if(root){
-            if(root.value === value){
-                return true;
-            }else if(root.value>value){
-                return this.search(root.left,value);
-            }else{
-                return this.search(root.right,value)
-            }
-        }
-    }
-    preorder(root){
-        if(root){
-            console.log(root.value)
-            this.preorder(root.left);
-            this.preorder(root.right);
-        }
-    }
-    inorder(root){
-        if(root){
-            this.inorder(root.left);
-            console.log(root.value);
-            this.inorder(root.right);
-        }
-    }
-    postorder(root){
-        if(root){
-            this.postorder(root.left)
-            this.postorder(root.right)
-            console.log(root.value)
         }
     }
     min(root){
         if(root){
             if(root.left==null){
-                return root.value
+                return root.value;
             }else{
                 return this.min(root.left)
             }
         }
     }
-    max(root){
-        if(root){
-            if(root.right == null){
-                return root.value;
+    delete(value){
+        this.root = this.deleteNode(this.root,value)
+    }
+    deleteNode(root,value){
+        if(!root) return root;
+        
+        if(value<root.value){
+            root.left = this.deleteNode(root.left,value)
+        }else if(value>root.value){
+            root.right = this.deleteNode(root.right,value)
+        }else{
+            if(!root.left && !root.right){
+                return null
+            }else if(!root.right){
+                return root.left
+            }else if(!root.left){
+                return root.right;
             }else{
-                return this.min(root.right)
+                root.value = this.min(root.right);
+                root.right = this.deleteNode(root.right,root.value)
             }
+        }
+        return root;
+    }
+    inorder(root){
+        if(root){
+            this.inorder(root.left);
+            console.log(root.value);
+            this.inorder(root.right)
         }
     }
-    closest(root,value){
-        if(root){
-            if(root.value==value){
-                return console.log('Value:',root.value,'Left:',root.left?.value,'Right:',root.right?.value,'Parent:',root.parant)
-            }else if(root.value>value){
-                root.parant = root.value
-                return this.closest(root.left,value)
+    closest(target){
+        let curr = this.root;
+        let closeVal = this.root.value;
+        while(curr){
+            if(Math.abs(target-curr.value) < Math.abs(target-closeVal)){
+                closeVal = curr.value
+            }else if(target<curr.value){
+                curr = curr.left;
+            }else if(target>curr.value){
+                curr = curr.right
             }else{
-                root.parant = root.value
-                return this.closest(root.right,value)
+                return
             }
         }
-        
+        return closeVal
+    }
+    isBst(root,min=-Infinity,max=Infinity){
+        if(!root){
+            return true;
+        }else if(root.value>=max || root.value<=min){
+            return false;
+        }
+        return this.isBst(root.left,min,root.value) && this.isBst(root.right,root.value,max)
+    }
+    search(root,value){
+        if(root){
+            if(value==root.value){
+                return true
+            }else if(value<root.value){
+                return this.search(root.left,value);
+            }else{
+                return this.search(root.right,value)
+            }
+        }
+        return false
+    }
+    bfs(){
+        const queue = [];
+        queue.push(this.root);
+        while(queue.length){
+            let curr = queue.shift();
+            console.log(curr.value);
+            if(curr.left){
+                queue.push(curr.left)
+            }
+            if(curr.right){
+                queue.push(curr.right)
+            }
+        }
     }
 }
-const tree = new Tree();
-tree.insert(10);
-tree.insert(9);
-tree.insert(1);
-tree.insert(3);
+const bst = new BinarySearchTree();
+bst.insert(10)
+bst.insert(5)
+bst.insert(7)
+bst.insert(15)
+bst.insert(3)
 
-console.log(tree.search(tree.root,4))
-// tree.preorder(tree.root);
-// tree.inorder(tree.root);
-// tree.postorder(tree.root)
-console.log(tree.min(tree.root))
-console.log(tree.max(tree.root))
-tree.closest(tree.root,10)
+console.log(bst.min(bst.root))
+bst.inorder(bst.root)
+console.log("Closest value is :",bst.closest(12))
+console.log('BST ?',bst.isBst(bst.root))
+console.log('Value found:',bst.search(bst.root,14))
+bst.bfs()
