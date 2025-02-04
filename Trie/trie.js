@@ -39,10 +39,41 @@ class Trie{
         }
         return true
     }
+    ///
+    autocomplete(prefix){
+        let results = [];
+        let node = this.findNode(prefix);
+        if(!node) return results;
+        this.collectWords(node,prefix,results);
+        return results;
+    }
+    collectWords(node,prefix,results){
+        if(node.isWordEnd){
+            results.push(prefix);
+        }
+        for(let char in node.children){
+            this.collectWords(node.children[char],prefix+char,results);
+        }
+    }
+    findNode(prefix) {
+        let curr = this.root;
+        for (let char of prefix) {
+            if (!(char in curr.children)) {
+                return null;
+            }
+            curr = curr.children[char];
+        }
+        return curr;
+    }
     
 }
 const trie = new Trie();
 trie.insert('cat');
 trie.insert('bat');
+trie.insert('app');
+trie.insert('apple');
+trie.insert('apply');
+
 console.log(trie.contains('cat'))
 console.log(trie.startWithPrefix('h'))
+console.log(trie.autocomplete('ap'))

@@ -48,6 +48,5 @@ graph.addEdge('A','B');
 graph.addEdge('B','C');
 graph.display()
 console.log(graph.hasEdge('B','C'))
-// graph.removeEdge('A','B')
 graph.removeVertex('A')
 graph.display()
