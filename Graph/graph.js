@@ -38,6 +38,33 @@ class Graph{
             console.log(vertex,'=>',[...this.adjusantList[vertex]])
         }
     }
+    dfs(start,visited=new Set()){
+        if(visited.has(start)) return;
+        console.log(start);
+        visited.add(start);
+        for(let neighbor of start){
+            this.dfs(neighbor,visited)
+        }
+
+    }
+    bfs(start){
+        let queue = [start];
+        let visited = new Set();
+        let results = []
+        visited.add(start)
+        while(queue.length){
+            let curr = queue.shift();
+            results.push(curr);
+            for(let item of this.adjusantList[curr]){
+                if(!visited.has(item)){
+                    visited.add(item);
+                    queue.push(item);
+                }
+            }
+        }
+        return results;
+
+    }
 }
 const graph = new Graph();
 graph.addVertex('A');
@@ -46,7 +73,9 @@ graph.addVertex('C');
 
 graph.addEdge('A','B');
 graph.addEdge('B','C');
+graph.addEdge('E','A');
+// graph.display()
+// console.log(graph.hasEdge('B','C'))
+// graph.removeVertex('A')
 graph.display()
-console.log(graph.hasEdge('B','C'))
-graph.removeVertex('A')
-graph.display()
+console.log(graph.bfs('A'))
