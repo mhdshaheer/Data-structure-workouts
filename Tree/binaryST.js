@@ -152,26 +152,45 @@ class BinarySearchTree{
     }
     
     
+    
+}
+function isSame(root1,root2){
+    if(!root1 && !root2) return true
+    if(!root1 || !root2) return false
+    if(root1.value!==root2.value) return false
+
+    return isSame(root1.left,root2.left) && isSame(root1.right,root2.right);
 }
 
 const bst = new BinarySearchTree();
-console.log('Tree is empty ?',bst.isEmpty())
-bst.insert(10);
-bst.insert(5);
-bst.insert(15);
-bst.insert(7);
-bst.insert(3);
-console.log(bst.search(bst.root,11))
-console.log(bst.search(bst.root,15))
-console.log('Preorder traversal :')
-bst.preOrder(bst.root)
-console.log('Inorder traversal :')
-bst.inOrder(bst.root)
-console.log('Postorder traversal :')
-bst.postOrder(bst.root);
-bst.delete(15)
-console.log('Bfs traversal :')
-bst.levelOrder()
-console.log('Minimum value is:',bst.min(bst.root))
-console.log('Maximum value is:',bst.max(bst.root))
-console.log('Closest value of ',12,' is:',bst.findClosest(12))
+// console.log('Tree is empty ?',bst.isEmpty())
+// bst.insert(10);
+// bst.insert(5);
+// bst.insert(15);
+// bst.insert(7);
+// bst.insert(3);
+// console.log(bst.search(bst.root,11))
+// console.log(bst.search(bst.root,15))
+// console.log('Preorder traversal :')
+// bst.preOrder(bst.root)
+// console.log('Inorder traversal :')
+// bst.inOrder(bst.root)
+// console.log('Postorder traversal :')
+// bst.postOrder(bst.root);
+// bst.delete(15)
+// console.log('Bfs traversal :')
+// bst.levelOrder()
+// console.log('Minimum value is:',bst.min(bst.root))
+// console.log('Maximum value is:',bst.max(bst.root))
+// console.log('Closest value of ',12,' is:',bst.findClosest(12))
+
+//check two bst are same or not
+let tree1 = new Node(10)
+tree1.left = new Node(9);
+tree1.right = new Node(12);
+
+let tree2 = new Node(10)
+tree2.left = new Node(9);
+tree2.right = new Node(12);
+
+console.log(isSame(tree1,tree2));
