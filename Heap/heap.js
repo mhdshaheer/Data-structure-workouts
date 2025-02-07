@@ -14,6 +14,7 @@ class MinHeap{
     swap(index1,index2){
         [this.heap[index1],this.heap[index2]] = [this.heap[index2],this.heap[index1]];
     }
+    // In insertion we need both insert and heapifyUp.
     insert(value){
         this.heap.push(value);
         this.heapifyUp();
@@ -31,6 +32,7 @@ class MinHeap{
             }
         }
     }
+    // In deletion we neeed both delete and heapifyDown.
     extractMin(){
          if(this.heap.length==0) return null;
          if(this.heap.length==1) return this.heap.pop();

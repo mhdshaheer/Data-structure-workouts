@@ -38,14 +38,16 @@ class Graph{
             console.log(vertex,'=>',[...this.adjusantList[vertex]])
         }
     }
-    dfs(start,visited=new Set()){
-        if(visited.has(start)) return;
+    dfs(start, visited = new Set()) {
+        if (visited.has(start)) return;
         console.log(start);
         visited.add(start);
-        for(let neighbor of start){
-            this.dfs(neighbor,visited)
+        let neighbors = this.adjusantList[start]; 
+        if (neighbors) {
+            for (let neighbor of neighbors) {
+                this.dfs(neighbor, visited);
+            }
         }
-
     }
     bfs(start){
         let queue = [start];
@@ -79,3 +81,4 @@ graph.addEdge('E','A');
 // graph.removeVertex('A')
 graph.display()
 console.log(graph.bfs('A'))
+graph.dfs('A')
