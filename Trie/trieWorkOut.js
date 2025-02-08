@@ -78,12 +78,12 @@ class Trie{
 }
 
 const trie = new Trie();
-trie.insert('cat');
+// trie.insert('cat');
 trie.insert('app');
 trie.insert('apply');
 trie.insert('apple')
 // console.log(trie.search('cat'))
 // console.log(trie.prefix('app'));
-console.log(trie.autoComplete('c'))
+// console.log(trie.autoComplete('c'))
 
-// console.log(trie.longestPrefix())
+console.log(trie.longestPrefix())
