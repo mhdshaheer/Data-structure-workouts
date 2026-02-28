@@ -148,7 +148,7 @@ class BinarySearchTree{
         if(root.value>=max || root.value<=min){
             return false;
         }
-        return (this.isBST(root.left,min,root.value)&&this.isBST(root.right,root.value))
+        return (this.isBST(root.left,min,root.value)&&this.isBST(root.right,root.value,max))
     }
     
     
